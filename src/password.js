@@ -17,9 +17,23 @@ function PasswordEntry(){
             <input placeholder="Example: Google,Microsoft,Facebook" id="web-name"/>
             <label for="username">Username</label>
             <input placeholder="" id="username"/>
+            <GeneratePassword/>
+
+            </div>
+        </div>
+    )
+}
+function GeneratePassword(){
+    return (
+        <div id="gen-pass">
+            <div>
             <label for="password">Password</label>
             <input id="password"/>
             </div>
+            <div>
+                <button>Generate</button>
+            </div>
+
         </div>
     )
 }
