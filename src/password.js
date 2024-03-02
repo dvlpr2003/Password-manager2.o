@@ -1,6 +1,7 @@
+import "./password.css";
 export default function PasswordBody(){
     return(
-        <div id="">
+        <div id="Password-main">
             <PasswordEntry/>
             <PasswordView/>
         </div>
@@ -11,15 +12,22 @@ export default function PasswordBody(){
 function PasswordEntry(){
     return(
         <div className="password-container">
-        <h1>Main</h1>
+            <div id="inform-element">
+            <label for="web-name">Website name</label>
+            <input placeholder="Example: Google,Microsoft,Facebook" id="web-name"/>
+            <label for="username">Username</label>
+            <input placeholder="" id="username"/>
+            <label for="password">Password</label>
+            <input id="password"/>
+            </div>
         </div>
     )
 }
 
+
 function PasswordView(){
     return(
         <div className="password-container">
-        <h1>Gain</h1>
         </div>
     )
 }
