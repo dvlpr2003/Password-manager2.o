@@ -62,23 +62,22 @@ export default function PasswordBody(){
         }
 
     },[Cletters])
-
+    const [l,setl]=useState("")
     useEffect(function(){
-        const gen_password = Capsltr.join("")
-        console.log(gen_password)
-
+        Capsltr.map((e)=>setl((n)=>n+e))
     },[Capsltr])
+    console.log(l)
   
     return(
         <div id="Password-main">
-            <PasswordEntry/>
+            <PasswordEntry l = {l}/>
             <PasswordView/>
         </div>
         
     )
 }
 
-function PasswordEntry(){
+function PasswordEntry({l}){
     const InputElement = useRef(null)
     useEffect(function(){
         InputElement.current.focus()
@@ -90,7 +89,7 @@ function PasswordEntry(){
             <input placeholder="Example: Google,Microsoft,Facebook" id="web-name" ref={InputElement}/>
             <label for="username">Username</label>
             <input placeholder="" id="username" />
-            <GeneratePassword/>
+            <GeneratePassword l={l}/>
             <div id="btn-1">
                 <button>Clear All</button>
                 <button>Confirm</button>
@@ -99,12 +98,12 @@ function PasswordEntry(){
         </div>
     )
 }
-function GeneratePassword(){
+function GeneratePassword({l}){
     return (
         <div id="gen-pass">
             <div>
             <label for="password">Password</label>
-            <input id="password"/>
+            <input id="password" value={l}/>
             </div>
             <div>
                 <button>Generate</button>
