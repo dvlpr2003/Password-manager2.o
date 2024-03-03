@@ -3,6 +3,8 @@ import "./password.css";
 
 
 export default function PasswordBody(){
+    const [Web,setWeb]=useState("")
+    const [User,setUser]=useState("")
 
     const [Cletters, setCLetters] = useState([]);
     const [Sletters,setSletters]=useState([])
@@ -70,43 +72,53 @@ export default function PasswordBody(){
     useEffect(function(){
         Capsltr.map((e)=>setpass((n)=>n+e))
     },[Capsltr])
+
+
+    function All_clear_Anand(){
+        setWeb("")
+        setUser("")
+    }
   
     return(
         <div id="Password-main">
-            <PasswordEntry l = {pass} Onmount={Onmount} setpass={setpass}/>
+            <PasswordEntry l = {pass} Onmount={Onmount} setpass={setpass} Web={Web} User={User} setWeb={setWeb} setUser={setUser} All_clear_Anand={All_clear_Anand}/>
             <PasswordView/>
         </div>
         
     )
 }
 
-function PasswordEntry({l,Onmount,setpass}){
+function PasswordEntry({l,Onmount,setpass,Web,User,setWeb,setUser,All_clear_Anand}){
     const InputElement = useRef(null)
     useEffect(function(){
         InputElement.current.focus()
-    })
+    },[])
+
+
+
+
     return(
         <div className="password-container">
             <div id="inform-element">
             <label for="web-name">Website name</label>
-            <input placeholder="Example: Google,Microsoft,Facebook" id="web-name" ref={InputElement}/>
+            <input placeholder="Example: Google,Microsoft,Facebook" id="web-name" ref={InputElement} value={Web} onChange={(e)=>setWeb(e.target.value)}/>
             <label for="username">Username</label>
-            <input placeholder="" id="username" />
+            <input placeholder="" id="username" value={User} onChange={(e)=>setUser(e.target.value)}/>
             <GeneratePassword l={l} Onmount={Onmount} setpass={setpass}/>
             <div id="btn-1">
-                <button>Clear All</button>
-                <button>Confirm</button>
+                <button onClick={All_clear_Anand}>Clear All</button>
+                <button >Confirm</button>
             </div>
             </div>
         </div>
     )
 }
-function GeneratePassword({l,Onmount,setpass}){
+function GeneratePassword({l,Onmount}){
     return (
         <div id="gen-pass">
             <div>
             <label for="password">Password</label>
-            <input id="password" defaultValue={l} onChange={(e)=>e.target.value}/>
+            <input id="password" defaultValue={l} />
             </div>
             <div>
                 <button onClick={Onmount}>Generate</button>
@@ -120,6 +132,8 @@ function GeneratePassword({l,Onmount,setpass}){
 function PasswordView(){
     return(
         <div className="password-container">
+            <h1>INFO</h1>
+
         </div>
     )
 }
