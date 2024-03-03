@@ -12,6 +12,8 @@ export default function PasswordBody(){
 
 
     const [Capsltr,setCapsltr] = useState([])
+    const [pass,setpass]=useState("")
+
 
 
     useEffect(function(){
@@ -27,7 +29,10 @@ export default function PasswordBody(){
         setSPLchar(specialCharacters)
 
     },[])
-    useEffect(function(){
+    function Onmount(){
+        setCapsltr([])
+        setpass("")
+
         if((Cletters.length >0 ) &&(Num.length>0) &&(Sletters.length>0) && (SPLchar.length>0))  {
 
             const rand_caps1 = Math.floor(Math.random()*Cletters.length)
@@ -61,23 +66,21 @@ export default function PasswordBody(){
 
         }
 
-    },[Cletters])
-    const [l,setl]=useState("")
+    }
     useEffect(function(){
-        Capsltr.map((e)=>setl((n)=>n+e))
+        Capsltr.map((e)=>setpass((n)=>n+e))
     },[Capsltr])
-    console.log(l)
   
     return(
         <div id="Password-main">
-            <PasswordEntry l = {l}/>
+            <PasswordEntry l = {pass} Onmount={Onmount} setpass={setpass}/>
             <PasswordView/>
         </div>
         
     )
 }
 
-function PasswordEntry({l}){
+function PasswordEntry({l,Onmount,setpass}){
     const InputElement = useRef(null)
     useEffect(function(){
         InputElement.current.focus()
@@ -89,7 +92,7 @@ function PasswordEntry({l}){
             <input placeholder="Example: Google,Microsoft,Facebook" id="web-name" ref={InputElement}/>
             <label for="username">Username</label>
             <input placeholder="" id="username" />
-            <GeneratePassword l={l}/>
+            <GeneratePassword l={l} Onmount={Onmount} setpass={setpass}/>
             <div id="btn-1">
                 <button>Clear All</button>
                 <button>Confirm</button>
@@ -98,15 +101,15 @@ function PasswordEntry({l}){
         </div>
     )
 }
-function GeneratePassword({l}){
+function GeneratePassword({l,Onmount,setpass}){
     return (
         <div id="gen-pass">
             <div>
             <label for="password">Password</label>
-            <input id="password" value={l}/>
+            <input id="password" defaultValue={l} onChange={(e)=>e.target.value}/>
             </div>
             <div>
-                <button>Generate</button>
+                <button onClick={Onmount}>Generate</button>
             </div>
 
         </div>
