@@ -1,6 +1,51 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef,useState } from "react";
 import "./password.css";
+
+
 export default function PasswordBody(){
+
+    const [Cletters, setCLetters] = useState([]);
+    const [Sletters,setSletters]=useState([])
+    const [Num,setNum]=useState([])
+    const [SPLchar,setSPLchar]=useState([])
+
+
+    
+    const [Capsltr,setCapsltr] = useState([])
+
+
+    useEffect(function(){
+
+        const Caps = Array.from({ length: 26 }, (_, i) => String.fromCharCode(65 + i));
+        const smallLetters = Array.from({ length: 26 }, (_, i) => String.fromCharCode(97 + i));
+        const number = Array.from({length:11},(_,i)=>i);
+        const specialCharacters = ['!', '"', '#', '$', '%', '&', "'", '(', ')', '*', '+', ',', '-', '.', '/', ':', ';', '<', '=', '>', '?', '@', '[', '\\', ']', '^', '_', '`', '{', '|', '}', '~'];
+
+        setCLetters(Caps)
+        setNum(number)
+        setSletters(smallLetters)
+        setSPLchar(specialCharacters)
+
+    },[])
+    useEffect(function(){
+        if((Cletters.length >0 ) &&(Num.length>0) &&(Sletters.length>0) && (SPLchar.length>0))  {
+
+            const rand_caps1 = Math.floor(Math.random()*Cletters.length)
+            const rand_caps2 = Math.floor(Math.random()*Cletters.length)
+            const rand_caps3 = Math.floor(Math.random()*Cletters.length)
+
+
+
+
+
+            setCapsltr([rand_caps1,rand_caps2,rand_caps3])
+
+        }
+
+    },[Cletters])
+    console.log(Capsltr)
+    
+
     return(
         <div id="Password-main">
             <PasswordEntry/>
