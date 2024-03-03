@@ -10,7 +10,7 @@ export default function PasswordBody(){
     const [SPLchar,setSPLchar]=useState([])
 
 
-    
+
     const [Capsltr,setCapsltr] = useState([])
 
 
@@ -34,18 +34,41 @@ export default function PasswordBody(){
             const rand_caps2 = Math.floor(Math.random()*Cletters.length)
             const rand_caps3 = Math.floor(Math.random()*Cletters.length)
 
+            const rand_sMALL1 = Math.floor(Math.random()*Sletters.length)
+            const rand_sMALL2 = Math.floor(Math.random()*Sletters.length)
+
+            const rand_num1 = Math.floor(Math.random()*Num.length)
+            const rand_num2 = Math.floor(Math.random()*Num.length)
+
+            const rand_special1 = Math.floor(Math.random()*SPLchar.length)
+            const rand_special2 = Math.floor(Math.random()*SPLchar.length)
 
 
 
-
-            setCapsltr([rand_caps1,rand_caps2,rand_caps3])
+            setCapsltr(
+                [
+                Cletters[rand_caps1],
+                Cletters[rand_caps2],
+                Cletters[rand_caps3],
+                Sletters[rand_sMALL1],
+                Sletters[rand_sMALL2],
+                Num[rand_num1],
+                Num[rand_num2],
+                SPLchar[rand_special1],
+                SPLchar[rand_special2]
+                ]
+                )
 
         }
 
     },[Cletters])
-    console.log(Capsltr)
-    
 
+    useEffect(function(){
+        const gen_password = Capsltr.join("")
+        console.log(gen_password)
+
+    },[Capsltr])
+  
     return(
         <div id="Password-main">
             <PasswordEntry/>
