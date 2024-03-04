@@ -6,6 +6,8 @@ export default function PasswordBody(){
     const [Web,setWeb]=useState("")
     const [User,setUser]=useState("")
 
+
+
     const [Cletters, setCLetters] = useState([]);
     const [Sletters,setSletters]=useState([])
     const [Num,setNum]=useState([])
@@ -16,6 +18,11 @@ export default function PasswordBody(){
     const [Capsltr,setCapsltr] = useState([])
     const [pass,setpass]=useState("")
 
+
+    // passwordview Data 
+
+    const [Final,setFinal]  = useState([])
+    console.log(Final)
 
 
     useEffect(function(){
@@ -81,23 +88,37 @@ export default function PasswordBody(){
   
     return(
         <div id="Password-main">
-            <PasswordEntry l = {pass} Onmount={Onmount} setpass={setpass} Web={Web} User={User} setWeb={setWeb} setUser={setUser} All_clear_Anand={All_clear_Anand}/>
+            <PasswordEntry l = {pass} Onmount={Onmount} setpass={setpass} Web={Web} User={User} setWeb={setWeb} setUser={setUser} All_clear_Anand={All_clear_Anand} setFinal={setFinal}/>
             <PasswordView/>
         </div>
         
     )
 }
 
-function PasswordEntry({l,Onmount,setpass,Web,User,setWeb,setUser,All_clear_Anand}){
+function PasswordEntry({l,Onmount,setpass,Web,User,setWeb,setUser,All_clear_Anand,setFinal}){
     const InputElement = useRef(null)
     useEffect(function(){
         InputElement.current.focus()
     },[])
+    let mapData = {
+        website_name : Web,
+        User_name : User,
+        password : l
+
+    }
+    function Onconfirm(){
+        if((mapData.website_name !== "") && (mapData.User_name !== "")) {
+        setFinal((e)=>[...e,mapData])
+
+        }
 
 
+    }
 
 
     return(
+
+
         <div className="password-container">
             <div id="inform-element">
             <label for="web-name">Website name</label>
@@ -107,10 +128,11 @@ function PasswordEntry({l,Onmount,setpass,Web,User,setWeb,setUser,All_clear_Anan
             <GeneratePassword l={l} Onmount={Onmount} setpass={setpass}/>
             <div id="btn-1">
                 <button onClick={All_clear_Anand}>Clear All</button>
-                <button >Confirm</button>
+                <button onClick={Onconfirm} >Confirm</button>
             </div>
             </div>
         </div>
+
     )
 }
 function GeneratePassword({l,Onmount}){
