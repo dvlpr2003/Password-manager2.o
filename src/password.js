@@ -154,8 +154,29 @@ function GeneratePassword({l,Onmount}){
 function PasswordView(){
     return(
         <div className="password-container">
-            <h1>INFO</h1>
+            <div id="zderf" >
+                <PasswordViewEle1/>
+            </div>
 
         </div>
+    )
+}
+
+function PasswordViewEle1(){
+    return(
+        <div id="gmdlwxc">
+            <PasswordViewElements/>
+        </div>
+    )
+}
+
+function PasswordViewElements(){
+    return(
+        <div id="bdlfjldkj">
+            <span>1</span> 
+            <span>Google</span>
+            <button>View</button>
+        </div>
+
     )
 }
