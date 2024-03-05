@@ -1,10 +1,14 @@
 import { useEffect, useRef,useState } from "react";
+import ViewBox  from "./view";
 import "./password.css";
 
 
 export default function PasswordBody(){
     const [Web,setWeb]=useState("")
     const [User,setUser]=useState("")
+
+    const [ViewPage,setViewPage]=useState(true)
+
 
 
 
@@ -89,7 +93,8 @@ export default function PasswordBody(){
     return(
         <div id="Password-main">
             <PasswordEntry l = {pass} Onmount={Onmount} setpass={setpass} Web={Web} User={User} setWeb={setWeb} setUser={setUser} All_clear_Anand={All_clear_Anand} setFinal={setFinal}/>
-            <PasswordView/>
+            <PasswordView ViewPage={ViewPage} setViewPage={setViewPage}/>
+            <ViewBox ViewPage={ViewPage} />
         </div>
         
     )
@@ -151,31 +156,34 @@ function GeneratePassword({l,Onmount}){
 }
 
 
-function PasswordView(){
+function PasswordView({ViewPage,setViewPage}){
     return(
         <div className="password-container">
             <div id="zderf" >
-                <PasswordViewEle1/>
+                <PasswordViewEle1 ViewPage={ViewPage} setViewPage={setViewPage}/>
             </div>
 
         </div>
     )
 }
 
-function PasswordViewEle1(){
+function PasswordViewEle1({ViewPage,setViewPage}){
     return(
         <div id="gmdlwxc">
-            <PasswordViewElements/>
+            <PasswordViewElements ViewPage={ViewPage} setViewPage={setViewPage}/>
         </div>
     )
 }
 
-function PasswordViewElements(){
+function PasswordViewElements({ViewPage,setViewPage}){
+    function ClicEvent(){
+        setViewPage(e=>!e)
+    }
     return(
         <div id="bdlfjldkj">
             <span>1</span> 
             <span>Google</span>
-            <button>View</button>
+            <button onClick={ClicEvent}>{ViewPage?"View":"Close"}</button>
         </div>
 
     )
