@@ -92,7 +92,7 @@ export default function PasswordBody(){
     return(
         <div id="Password-main">
             <PasswordEntry l = {pass} Onmount={Onmount} setpass={setpass} Web={Web} User={User} setWeb={setWeb} setUser={setUser} All_clear_Anand={All_clear_Anand} setFinal={setFinal}/>
-            <PasswordView ViewPage={ViewPage} setViewPage={setViewPage}/>
+            <PasswordView ViewPage={ViewPage} setViewPage={setViewPage} Final={Final}/>
             <ViewBox ViewPage={ViewPage} setViewPage={setViewPage}/>
         </div>
         
@@ -155,33 +155,42 @@ function GeneratePassword({l,Onmount}){
 }
 
 
-function PasswordView({ViewPage,setViewPage}){
+function PasswordView({ViewPage,setViewPage,Final}){
     return(
         <div className="password-container">
             <div id="zderf" >
-                <PasswordViewEle1 ViewPage={ViewPage} setViewPage={setViewPage}/>
+                <PasswordViewEle1 ViewPage={ViewPage} setViewPage={setViewPage} Final={Final}/>
             </div>
 
         </div>
     )
 }
 
-function PasswordViewEle1({ViewPage,setViewPage}){
+function PasswordViewEle1({ViewPage,setViewPage,Final}){
     return(
         <div id="gmdlwxc">
-            <PasswordViewElements ViewPage={ViewPage} setViewPage={setViewPage}/>
+            {
+            Final && Final.map((e,i)=><PasswordViewElements 
+                ViewPage={ViewPage} 
+                setViewPage={setViewPage} 
+                web={e.website_name} 
+                user = {e.User_name} 
+                password={e.password} 
+                index = {i+1}/>)
+            }
         </div>
     )
 }
 
-function PasswordViewElements({ViewPage,setViewPage}){
+function PasswordViewElements({ViewPage,setViewPage,web,index}){
     function ClicEvent(){
         setViewPage(e=>!e)
+        console.log(index)
     }
     return(
         <div id="bdlfjldkj">
-            <span>1</span> 
-            <span>Google</span>
+            <span>{index}</span> 
+            <span>{web}</span>
             <button onClick={ClicEvent}>{ViewPage?"View":"Close"}</button>
         </div>
 
