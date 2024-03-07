@@ -7,7 +7,8 @@ export default function PasswordBody(){
     const [Web,setWeb]=useState("")
     const [User,setUser]=useState("")
 
-    const [ViewPage,setViewPage]=useState()
+    const [ViewPage,setViewPage]=useState(false)
+    const [True,setTrue] = useState(true)
     
 
 
@@ -92,8 +93,8 @@ export default function PasswordBody(){
     return(
         <div id="Password-main">
             <PasswordEntry l = {pass} Onmount={Onmount} setpass={setpass} Web={Web} User={User} setWeb={setWeb} setUser={setUser} All_clear_Anand={All_clear_Anand} setFinal={setFinal}/>
-            <PasswordView ViewPage={ViewPage} setViewPage={setViewPage} Final={Final}/>
-            <ViewBox ViewPage={ViewPage} setViewPage={setViewPage}/>
+            <PasswordView ViewPage={ViewPage} setViewPage={setViewPage} Final={Final} True = {True} setTrue={setTrue}/>
+            <ViewBox ViewPage={ViewPage} setViewPage={setViewPage} True = {True} setTrue={setTrue} />
         </div>
         
     )
@@ -155,18 +156,18 @@ function GeneratePassword({l,Onmount}){
 }
 
 
-function PasswordView({ViewPage,setViewPage,Final}){
+function PasswordView({ViewPage,setViewPage,Final,True,setTrue}){
     return(
         <div className="password-container">
             <div id="zderf" >
-                <PasswordViewEle1 ViewPage={ViewPage} setViewPage={setViewPage} Final={Final}/>
+                <PasswordViewEle1 ViewPage={ViewPage} setViewPage={setViewPage} Final={Final} True = {True} setTrue={setTrue}/>
             </div>
 
         </div>
     )
 }
 
-function PasswordViewEle1({ViewPage,setViewPage,Final}){
+function PasswordViewEle1({ViewPage,setViewPage,Final,True,setTrue}){
     return(
         <div id="gmdlwxc">
             {
@@ -176,17 +177,20 @@ function PasswordViewEle1({ViewPage,setViewPage,Final}){
                 web={e.website_name} 
                 user = {e.User_name} 
                 password={e.password} 
-                index = {i+1}/>)
+                index = {i+1}
+                True={True}
+                setTrue={setTrue}
+                />)
             }
         </div>
     )
 }
 
-function PasswordViewElements({ViewPage,setViewPage,web,index}){
+function PasswordViewElements({ViewPage,setViewPage,web,index,True,setTrue}){
     let joe = ViewPage  === index
     function ClicEvent(){
         setViewPage(index)
-        console.log(index)
+        setTrue((e)=>!e)
     }
     return(
         <div id="bdlfjldkj">
