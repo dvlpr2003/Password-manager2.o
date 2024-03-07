@@ -7,7 +7,7 @@ export default function PasswordBody(){
     const [Web,setWeb]=useState("")
     const [User,setUser]=useState("")
 
-    const [ViewPage,setViewPage]=useState(true)
+    const [ViewPage,setViewPage]=useState()
     
 
 
@@ -183,15 +183,16 @@ function PasswordViewEle1({ViewPage,setViewPage,Final}){
 }
 
 function PasswordViewElements({ViewPage,setViewPage,web,index}){
+    let joe = ViewPage  === index
     function ClicEvent(){
-        setViewPage(e=>!e)
+        setViewPage(index)
         console.log(index)
     }
     return(
         <div id="bdlfjldkj">
             <span>{index}</span> 
             <span>{web}</span>
-            <button onClick={ClicEvent}>{ViewPage?"View":"Close"}</button>
+            <button onClick={ClicEvent}>{joe?"Close":"View"}</button>
         </div>
 
     )
