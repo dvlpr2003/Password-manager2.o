@@ -8,8 +8,7 @@ export default function PasswordBody(){
     const [User,setUser]=useState("")
 
     const [ViewPage,setViewPage]=useState(true)
-
-
+    
 
 
     const [Cletters, setCLetters] = useState([]);
@@ -94,7 +93,7 @@ export default function PasswordBody(){
         <div id="Password-main">
             <PasswordEntry l = {pass} Onmount={Onmount} setpass={setpass} Web={Web} User={User} setWeb={setWeb} setUser={setUser} All_clear_Anand={All_clear_Anand} setFinal={setFinal}/>
             <PasswordView ViewPage={ViewPage} setViewPage={setViewPage}/>
-            <ViewBox ViewPage={ViewPage} />
+            <ViewBox ViewPage={ViewPage} setViewPage={setViewPage}/>
         </div>
         
     )
