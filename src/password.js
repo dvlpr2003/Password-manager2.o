@@ -22,9 +22,7 @@ export default function PasswordBody(){
     const [Capsltr,setCapsltr] = useState([])
     const [pass,setpass]=useState("")
 
-
     // passwordview Data 
-
     const [Final,setFinal]  = useState([])
     console.log(Final)
 
@@ -51,15 +49,20 @@ export default function PasswordBody(){
             const rand_caps1 = Math.floor(Math.random()*Cletters.length)
             const rand_caps2 = Math.floor(Math.random()*Cletters.length)
             const rand_caps3 = Math.floor(Math.random()*Cletters.length)
+            const rand_caps4 = Math.floor(Math.random()*Cletters.length)
 
             const rand_sMALL1 = Math.floor(Math.random()*Sletters.length)
             const rand_sMALL2 = Math.floor(Math.random()*Sletters.length)
+            const rand_sMALL3 = Math.floor(Math.random()*Sletters.length)
 
             const rand_num1 = Math.floor(Math.random()*Num.length)
             const rand_num2 = Math.floor(Math.random()*Num.length)
+            const rand_num3 = Math.floor(Math.random()*Num.length)
 
             const rand_special1 = Math.floor(Math.random()*SPLchar.length)
             const rand_special2 = Math.floor(Math.random()*SPLchar.length)
+            const rand_special3 = Math.floor(Math.random()*SPLchar.length)
+            const rand_special4 = Math.floor(Math.random()*SPLchar.length)
 
 
 
@@ -68,12 +71,18 @@ export default function PasswordBody(){
                 Cletters[rand_caps1],
                 Cletters[rand_caps2],
                 Cletters[rand_caps3],
+                Cletters[rand_caps4],
                 Sletters[rand_sMALL1],
                 Sletters[rand_sMALL2],
+                Sletters[rand_sMALL3],
+
                 Num[rand_num1],
                 Num[rand_num2],
+                Num[rand_num3],
                 SPLchar[rand_special1],
-                SPLchar[rand_special2]
+                SPLchar[rand_special2],
+                SPLchar[rand_special3],
+                SPLchar[rand_special4],
                 ]
                 )
 
@@ -88,6 +97,7 @@ export default function PasswordBody(){
     function All_clear_Anand(){
         setWeb("")
         setUser("")
+        setpass("")
     }
   
     return(
@@ -119,10 +129,7 @@ function PasswordEntry({l,Onmount,setpass,Web,User,setWeb,setUser,All_clear_Anan
 
 
     }
-
-
     return(
-
 
         <div className="password-container">
             <div id="inform-element">
@@ -154,8 +161,6 @@ function GeneratePassword({l,Onmount}){
         </div>
     )
 }
-
-
 function PasswordView({ViewPage,setViewPage,Final,True,setTrue}){
     return(
         <div className="password-container">
@@ -166,7 +171,6 @@ function PasswordView({ViewPage,setViewPage,Final,True,setTrue}){
         </div>
     )
 }
-
 function PasswordViewEle1({ViewPage,setViewPage,Final,True,setTrue}){
     return(
         <div id="gmdlwxc">
@@ -185,7 +189,6 @@ function PasswordViewEle1({ViewPage,setViewPage,Final,True,setTrue}){
         </div>
     )
 }
-
 function PasswordViewElements({ViewPage,setViewPage,web,index,True,setTrue}){
     let joe = ViewPage  === index
     function ClicEvent(){
@@ -198,6 +201,5 @@ function PasswordViewElements({ViewPage,setViewPage,web,index,True,setTrue}){
             <span>{web}</span>
             <button onClick={ClicEvent}>{joe?"Close":"View"}</button>
         </div>
-
     )
 }
