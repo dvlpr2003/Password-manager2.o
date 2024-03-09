@@ -90,6 +90,8 @@ export default function PasswordBody(){
 
     }
     useEffect(function(){
+        const shuffledArray = Capsltr.sort(() => Math.random() - 0.5);
+        console.log(shuffledArray)
         Capsltr.map((e)=>setpass((n)=>n+e))
     },[Capsltr])
 
@@ -104,7 +106,7 @@ export default function PasswordBody(){
         <div id="Password-main">
             <PasswordEntry l = {pass} Onmount={Onmount} setpass={setpass} Web={Web} User={User} setWeb={setWeb} setUser={setUser} All_clear_Anand={All_clear_Anand} setFinal={setFinal}/>
             <PasswordView ViewPage={ViewPage} setViewPage={setViewPage} Final={Final} True = {True} setTrue={setTrue}/>
-            <ViewBox ViewPage={ViewPage} setViewPage={setViewPage} True = {True} setTrue={setTrue} />
+            <ViewBox ViewPage={ViewPage} setViewPage={setViewPage} True = {True} setTrue={setTrue} Final={Final} />
         </div>
         
     )

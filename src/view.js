@@ -1,4 +1,4 @@
-export default function ViewBox({True,setTrue,ViewPage,setViewPage}){
+export default function ViewBox({True,setTrue,ViewPage,setViewPage,Final}){
     function CancelBtn(){
         setTrue((e)=>!e)
         setViewPage()
@@ -7,10 +7,21 @@ export default function ViewBox({True,setTrue,ViewPage,setViewPage}){
         <div id="view-box" style={True?{display:"none"}:{display:"block"} }>
             <div id="view-box-2">
             <button id="x-btn" onClick={CancelBtn}>&#9747;</button>
-                <span>Website Name : Google</span>
-                <span>User Name : dvlpr_2003</span>
-                <span>Password : jlkdjlfjdf44</span>
+            {
+                Final.map((e)=><BtnElements web = {e.website_name} user={e.User_name} password ={e.password}/>)
+            }
+            
+
             </div>
         </div>
+    )
+}
+function BtnElements({web,user,password}){
+    return(
+        <>
+                <span>Website Name : {web}</span>
+                <span>User Name : {user}</span>
+                <span>Password : {password}</span>
+        </>
     )
 }
